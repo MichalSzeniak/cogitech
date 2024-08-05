@@ -8,8 +8,8 @@ store.dispatch("fetchPosts");
 store.dispatch("fetchUsers");
 
 const paginatedPosts = computed(() => {
-  const start = (store.state.currentPage - 1) * 10;
-  const end = start + 10;
+  const start = (store.state.currentPage - 1) * store.state.itemsPerPage;
+  const end = start + store.state.itemsPerPage;
   return store.getters.postsWithAuthors.slice(start, end);
 });
 </script>

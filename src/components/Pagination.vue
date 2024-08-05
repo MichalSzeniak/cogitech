@@ -34,12 +34,10 @@ const currentPage = computed({
           >
             <path d="M8.122 24l-4.122-4 8-8-8-8 4.122-4 11.878 12z" />
           </svg>
-          Prev
         </span>
       </template>
       <template #next-button>
         <span class="next-button paginate-buttons">
-          Next
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="black"
@@ -90,7 +88,11 @@ const currentPage = computed({
 }
 
 .back-button {
-  width: 70px;
+  width: 40px;
+
+  @media (max-width: 480px) {
+    width: 20px;
+  }
 
   svg {
     transform: rotate(180deg);
@@ -98,7 +100,11 @@ const currentPage = computed({
 }
 
 .next-button {
-  width: 70px;
+  width: 40px;
+
+  @media (max-width: 480px) {
+    width: 20px;
+  }
 }
 
 .active-page {
