@@ -17,7 +17,7 @@ const currentPage = computed({
 </script>
 
 <template>
-  <div class="pagination-container">
+  <div class="paginate-container">
     <vue-awesome-paginate
       :total-items="totalPosts"
       :items-per-page="itemsPerPage"
@@ -56,9 +56,9 @@ const currentPage = computed({
 </template>
 
 <style lang="scss">
-.pagination-container {
+.paginate-container {
   background-color: #f0f0f0;
-  margin: 20px;
+  margin: 20px 0;
   border-radius: 5px;
   padding: 10px 0px;
   display: flex;
@@ -74,8 +74,18 @@ const currentPage = computed({
   background-color: transparent;
   border-radius: 2px;
 
+  @media (max-width: 768px) {
+    width: 30px;
+    height: 30px;
+  }
+
+  @media (max-width: 480px) {
+    width: 20px;
+    height: 20px;
+  }
+
   &:hover {
-    background-color: #f2f2f2;
+    background-color: #91b8f7;
   }
 }
 

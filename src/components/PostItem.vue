@@ -1,15 +1,27 @@
 <script setup>
 import { ref } from "vue";
+import { useStore } from "vuex";
 const props = defineProps({
   post: Object,
 });
 const expanded = ref(false);
+const store = useStore();
+
+const deletePost = async (post) => {
+  if (confirm(`Are you sure you want to delete the post "${post.title}"?`)) {
+    try {
+      await store.dispatch("deletePost", post.id);
+    } catch (error) {
+      console.error("Error while deleting a post", error);
+    }
+  }
+};
 </script>
 
 <template>
   <div class="post-card">
     <div>
-      <button class="delete-button" @click="deletePost">
+      <button class="delete-button" @click="deletePost(post)">
         <span class="delete-icon">&times;</span>
       </button>
       <h3 class="post-title">{{ post.title }}</h3>
@@ -54,7 +66,7 @@ const expanded = ref(false);
 }
 
 .post-title {
-  margin-bottom: 10px;
+  margin: 15px 0;
   font-size: 20px;
 }
 

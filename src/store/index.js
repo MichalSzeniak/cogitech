@@ -42,6 +42,21 @@ export default createStore({
         console.error("Author fetch error:", error);
       }
     },
+
+    async deletePost({ commit, state }, postId) {
+      try {
+        await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`, {
+          method: "DELETE",
+        });
+
+        commit(
+          "SET_POSTS",
+          state.posts.filter((post) => post.id !== postId)
+        );
+      } catch (error) {
+        console.error("Post delete error:", error);
+      }
+    },
   },
   getters: {
     postsWithAuthors: (state) => {
