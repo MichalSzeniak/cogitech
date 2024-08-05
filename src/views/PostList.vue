@@ -4,14 +4,15 @@ import PostItem from "@/components/PostItem.vue";
 import Pagination from "@/components/Pagination.vue";
 import { useStore } from "vuex";
 const store = useStore();
+const postsWithAuthors = computed(() => store.getters.postsWithAuthors);
 store.dispatch("fetchPosts");
-const posts = computed(() => store.state.posts);
+store.dispatch("fetchUsers");
 </script>
 
 <template>
   <main>
-    <div class="posts-container" v-if="posts.length">
-      <PostItem v-for="post in posts" :key="post.id" :post="post" />
+    <div class="posts-container" v-if="postsWithAuthors.length">
+      <PostItem v-for="post in postsWithAuthors" :key="post.id" :post="post" />
     </div>
     <div v-else>Loading posts...</div>
     <Pagination />

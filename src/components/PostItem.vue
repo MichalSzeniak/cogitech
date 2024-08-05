@@ -1,7 +1,9 @@
 <script setup>
+import { ref } from "vue";
 const props = defineProps({
   post: Object,
 });
+const expanded = ref(false);
 </script>
 
 <template>
@@ -12,18 +14,19 @@ const props = defineProps({
       </button>
       <h3 class="post-title">{{ post.title }}</h3>
 
-      <p v-if="post.showMore || post.body < 100">{{ post.body }}</p>
-      <p v-else>{{ post.body.slice(0, 100) }}...</p>
+      <p :class="['post-content', { expanded: expanded }]">
+        {{ post.body }}
+      </p>
 
       <button
         v-if="post.body.length > 100"
         class="read-more"
-        @click="post.showMore = !post.showMore"
+        @click="expanded = !expanded"
       >
-        {{ post.showMore ? "Show less" : "show more" }}
+        {{ expanded ? "Show less" : "Show more" }}
       </button>
     </div>
-    <p class="post-author">Autor: {{ post.author }}</p>
+    <p class="post-author">Autor: {{ post.authorName }}</p>
   </div>
 </template>
 
@@ -56,7 +59,14 @@ const props = defineProps({
 }
 
 .post-content {
-  margin-bottom: 5px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+  &.expanded {
+    -webkit-line-clamp: unset; /* Usuń ograniczenie linii */
+  }
 }
 
 .read-more {
@@ -67,11 +77,11 @@ const props = defineProps({
   padding: 5px 10px;
   border-radius: 3px;
   transition: background-color 0.3s ease, color 0.3s ease;
-}
 
-.read-more:hover {
-  background-color: #3b82f6;
-  color: white;
+  &:hover {
+    background-color: #3b82f6;
+    color: white;
+  }
 }
 
 .post-author {
@@ -94,10 +104,10 @@ const props = defineProps({
   position: absolute;
   right: -5px;
   top: -5px;
-}
 
-.delete-button:hover {
-  background-color: #c2c2c2;
+  &:hover {
+    background-color: #c2c2c2;
+  }
 }
 
 .delete-icon {
