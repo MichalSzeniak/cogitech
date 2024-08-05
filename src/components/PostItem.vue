@@ -20,7 +20,7 @@ const props = defineProps({
         class="read-more"
         @click="post.showMore = !post.showMore"
       >
-        {{ post.showMore ? "Zobacz mniej" : "Zobacz więcej" }}
+        {{ post.showMore ? "Show less" : "show more" }}
       </button>
     </div>
     <p class="post-author">Autor: {{ post.author }}</p>
@@ -81,7 +81,7 @@ const props = defineProps({
 
 .delete-button {
   background-color: #f2f2f2;
-  border: 1px solid #ddd;
+  border: 1px solid #f2f2f2;
   color: #777;
   cursor: pointer;
   width: 30px;

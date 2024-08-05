@@ -3,10 +3,15 @@ import { createStore } from "vuex";
 export default createStore({
   state: {
     posts: [],
+    currentPage: 1,
+    itemsPerPage: 10,
   },
   mutations: {
     SET_POSTS(state, posts) {
       state.posts = posts;
+    },
+    SET_CURRENT_PAGE(state, page) {
+      state.currentPage = page;
     },
   },
   actions: {
