@@ -26,7 +26,7 @@ const expanded = ref(false);
         {{ expanded ? "Show less" : "Show more" }}
       </button>
     </div>
-    <p class="post-author">Autor: {{ post.authorName }}</p>
+    <p class="post-author">Author: {{ post.authorName }}</p>
   </div>
 </template>
 
